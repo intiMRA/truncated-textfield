@@ -9,21 +9,27 @@
 /* Begin PBXBuildFile section */
 		35F3EC6E2705944E008FD90A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F3EC6D2705944E008FD90A /* AppDelegate.swift */; };
 		35F3EC702705944E008FD90A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F3EC6F2705944E008FD90A /* SceneDelegate.swift */; };
-		35F3EC722705944E008FD90A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F3EC712705944E008FD90A /* ContentView.swift */; };
 		35F3EC7427059450008FD90A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35F3EC7327059450008FD90A /* Assets.xcassets */; };
 		35F3EC7727059450008FD90A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35F3EC7627059450008FD90A /* Preview Assets.xcassets */; };
 		35F3EC7A27059450008FD90A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35F3EC7827059450008FD90A /* LaunchScreen.storyboard */; };
+		35F3EC9227059577008FD90A /* UITextFieldViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F3EC8E27059577008FD90A /* UITextFieldViewRepresentable.swift */; };
+		35F3EC9327059577008FD90A /* UnderLineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F3EC8F27059577008FD90A /* UnderLineTextField.swift */; };
+		35F3EC9427059577008FD90A /* MultipleTextFieldsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F3EC9027059577008FD90A /* MultipleTextFieldsViewModel.swift */; };
+		35F3EC9527059577008FD90A /* MultipleTextFieldsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F3EC9127059577008FD90A /* MultipleTextFieldsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		35F3EC6A2705944E008FD90A /* truncatingTextField.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = truncatingTextField.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35F3EC6D2705944E008FD90A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		35F3EC6F2705944E008FD90A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		35F3EC712705944E008FD90A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		35F3EC7327059450008FD90A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		35F3EC7627059450008FD90A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		35F3EC7927059450008FD90A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		35F3EC7B27059450008FD90A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		35F3EC8E27059577008FD90A /* UITextFieldViewRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextFieldViewRepresentable.swift; sourceTree = "<group>"; };
+		35F3EC8F27059577008FD90A /* UnderLineTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnderLineTextField.swift; sourceTree = "<group>"; };
+		35F3EC9027059577008FD90A /* MultipleTextFieldsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleTextFieldsViewModel.swift; sourceTree = "<group>"; };
+		35F3EC9127059577008FD90A /* MultipleTextFieldsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleTextFieldsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,9 +62,9 @@
 		35F3EC6C2705944E008FD90A /* truncatingTextField */ = {
 			isa = PBXGroup;
 			children = (
+				35F3EC8D27059577008FD90A /* underline text field */,
 				35F3EC6D2705944E008FD90A /* AppDelegate.swift */,
 				35F3EC6F2705944E008FD90A /* SceneDelegate.swift */,
-				35F3EC712705944E008FD90A /* ContentView.swift */,
 				35F3EC7327059450008FD90A /* Assets.xcassets */,
 				35F3EC7827059450008FD90A /* LaunchScreen.storyboard */,
 				35F3EC7B27059450008FD90A /* Info.plist */,
@@ -73,6 +79,17 @@
 				35F3EC7627059450008FD90A /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		35F3EC8D27059577008FD90A /* underline text field */ = {
+			isa = PBXGroup;
+			children = (
+				35F3EC8E27059577008FD90A /* UITextFieldViewRepresentable.swift */,
+				35F3EC8F27059577008FD90A /* UnderLineTextField.swift */,
+				35F3EC9027059577008FD90A /* MultipleTextFieldsViewModel.swift */,
+				35F3EC9127059577008FD90A /* MultipleTextFieldsView.swift */,
+			);
+			path = "underline text field";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -145,9 +162,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35F3EC9527059577008FD90A /* MultipleTextFieldsView.swift in Sources */,
 				35F3EC6E2705944E008FD90A /* AppDelegate.swift in Sources */,
 				35F3EC702705944E008FD90A /* SceneDelegate.swift in Sources */,
-				35F3EC722705944E008FD90A /* ContentView.swift in Sources */,
+				35F3EC9327059577008FD90A /* UnderLineTextField.swift in Sources */,
+				35F3EC9427059577008FD90A /* MultipleTextFieldsViewModel.swift in Sources */,
+				35F3EC9227059577008FD90A /* UITextFieldViewRepresentable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
