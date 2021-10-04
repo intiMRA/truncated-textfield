@@ -10,6 +10,7 @@ import SwiftUI
 struct UnderLineTextField: View {
     @Binding var text: String
     @Binding var wholeText: String
+    @Binding var showTruncation: Bool
     let isFoused: Bool
     let maxChars: Int
     let placeholder: String
@@ -19,7 +20,14 @@ struct UnderLineTextField: View {
     let wasTapped: (TextFieldIds) -> Void
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
-            UITextFieldViewRepresentable(text: $text, wholeText: $wholeText, maxChars: maxChars, placeholder: placeholder, isFoused: isFoused, returnKeyType: returnKeyType, id: id, didTapReturn: didTapReturn)
+            HStack(spacing: 0) {
+                if showTruncation {
+                    Text("...")
+                        .padding(.trailing, 0)
+                }
+                UITextFieldViewRepresentable(text: $text, wholeText: $wholeText, showTrancation: $showTruncation, maxChars: maxChars, placeholder: placeholder, isFoused: isFoused, returnKeyType: returnKeyType, id: id, didTapReturn: didTapReturn)
+                    .padding(.leading, 0)
+            }
             underLine
                 .frame(height: 1)
         }

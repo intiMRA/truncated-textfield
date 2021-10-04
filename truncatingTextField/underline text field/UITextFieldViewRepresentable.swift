@@ -13,50 +13,54 @@ struct UITextFieldViewRepresentable: UIViewRepresentable {
     class UITextFieldViewRepresentableCoordinator: NSObject, UITextFieldDelegate {
         @Binding var text: String
         @Binding var wholeText: String
-        var truncated = ""
+        @Binding var showTruncation: Bool
+        var hiddenCharacters = ""
         var oldSize: Int = -1
         let maxChars: Int
         let id: TextFieldIds
         let didTapReturn: (TextFieldIds) -> Void
-        init(text: Binding<String>, wholeText: Binding<String>, maxChars: Int, id: TextFieldIds, didTapReturn: @escaping (TextFieldIds) -> Void) {
+        init(text: Binding<String>, wholeText: Binding<String>, showTruncation: Binding<Bool>, maxChars: Int, id: TextFieldIds, didTapReturn: @escaping (TextFieldIds) -> Void) {
             self._text = text
             self.id = id
             self.maxChars = maxChars
             self._wholeText = wholeText
+            self._showTruncation = showTruncation
             self.didTapReturn = didTapReturn
         }
         
         func didChangeText(_ newText: String) {
-            if newText.count > maxChars, oldSize < newText.count {
-                truncated.append(contentsOf: newText.replacingOccurrences(of: "...", with: "").prefix(newText.count - oldSize))
-            }
-            
             var text = newText
+            if text.count > maxChars, oldSize < text.count {
+                hiddenCharacters.append(contentsOf: text.prefix(text.count - oldSize))
+            }
 
             if text.count > maxChars, oldSize < text.count {
                 text = truncateText(text: text)
-            } else if text.replacingOccurrences(of: "...", with: "").count < maxChars, oldSize > text.count, !truncated.isEmpty {
+            } else if text.count < maxChars, oldSize > text.count, !hiddenCharacters.isEmpty {
                 text = unTruncate(text: text)
             }
             
             oldSize = text.count
-            wholeText = truncated + text.replacingOccurrences(of: "...", with: "")
+            wholeText = hiddenCharacters + text
             self.text = text
         }
         
         private func truncateText(text: String) -> String {
             let range = text.startIndex..<text.index(text.startIndex, offsetBy: text.count - maxChars)
-            return text.replacingCharacters(in: range, with: "...")
+            showTruncation = true
+            return text.replacingCharacters(in: range, with: "")
         }
 
         private func unTruncate(text: String) -> String {
             var newText = text
-            let startInxed = truncated.index(truncated.startIndex, offsetBy: max(truncated.count - (oldSize - newText.count), 0))
-            let range = startInxed..<truncated.endIndex
-            newText = String(truncated.suffix(min(truncated.count, oldSize - newText.count))) + newText.replacingOccurrences(of: "...", with: "")
-            truncated = truncated.replacingCharacters(in: range, with: "")
-            if !truncated.isEmpty {
-                newText = "..." + newText
+            let startInxed = hiddenCharacters.index(hiddenCharacters.startIndex, offsetBy: max(hiddenCharacters.count - (oldSize - newText.count), 0))
+            let range = startInxed..<hiddenCharacters.endIndex
+            newText = String(hiddenCharacters.suffix(min(hiddenCharacters.count, oldSize - newText.count))) + newText
+            hiddenCharacters = hiddenCharacters.replacingCharacters(in: range, with: "")
+            if !hiddenCharacters.isEmpty {
+                showTruncation = true
+            } else {
+                showTruncation = false
             }
 
             return newText
@@ -71,13 +75,14 @@ struct UITextFieldViewRepresentable: UIViewRepresentable {
     
     @Binding var text: String
     @Binding var wholeText: String
+    @Binding var showTrancation: Bool
     let maxChars: Int
     let isFoused: Bool
     let placeholder: String
     let returnKeyType: UIReturnKeyType
     let id: TextFieldIds
     let didTapReturn: (TextFieldIds) -> Void
-    init(text: Binding<String>, wholeText: Binding<String>, maxChars: Int, placeholder: String, isFoused: Bool, returnKeyType: UIReturnKeyType, id: TextFieldIds, didTapReturn: @escaping (TextFieldIds) -> Void) {
+    init(text: Binding<String>, wholeText: Binding<String>, showTrancation: Binding<Bool>, maxChars: Int, placeholder: String, isFoused: Bool, returnKeyType: UIReturnKeyType, id: TextFieldIds, didTapReturn: @escaping (TextFieldIds) -> Void) {
         self._text = text
         self._wholeText = wholeText
         self.placeholder = placeholder
@@ -86,6 +91,7 @@ struct UITextFieldViewRepresentable: UIViewRepresentable {
         self.maxChars = maxChars
         self.didTapReturn = didTapReturn
         self.returnKeyType = returnKeyType
+        self._showTrancation = showTrancation
     }
     
     func makeUIView(context: Context) -> UITextField {
@@ -117,7 +123,7 @@ struct UITextFieldViewRepresentable: UIViewRepresentable {
     }
     
     func makeCoordinator() -> UITextFieldViewRepresentableCoordinator {
-        UITextFieldViewRepresentableCoordinator(text: $text, wholeText: $wholeText, maxChars: maxChars, id: self.id, didTapReturn: self.didTapReturn)
+        UITextFieldViewRepresentableCoordinator(text: $text, wholeText: $wholeText, showTruncation: $showTrancation, maxChars: maxChars, id: self.id, didTapReturn: self.didTapReturn)
     }
 }
 

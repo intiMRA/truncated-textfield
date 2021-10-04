@@ -13,13 +13,13 @@ struct MultipleTextFieldsView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
-                UnderLineTextField(text: $viewModel.text1, wholeText: $viewModel.wholeText1, isFoused: viewModel.text1IsFocused, maxChars: maxChars, placeholder: "First name", returnKeyType: .next, id: .one, didTapReturn: viewModel.didTapReturn(_:), wasTapped: viewModel.textFieldWasTapped(_:))
+                UnderLineTextField(text: $viewModel.text1, wholeText: $viewModel.wholeText1, showTruncation: $viewModel.showTruncation1, isFoused: viewModel.text1IsFocused, maxChars: maxChars, placeholder: "First name", returnKeyType: .next, id: .one, didTapReturn: viewModel.didTapReturn(_:), wasTapped: viewModel.textFieldWasTapped(_:))
                
-                UnderLineTextField(text: $viewModel.text2, wholeText: $viewModel.wholeText2, isFoused: viewModel.text2IsFocused, maxChars: maxChars, placeholder: "Last name", returnKeyType: .next, id: .two, didTapReturn: viewModel.didTapReturn(_:), wasTapped: viewModel.textFieldWasTapped(_:))
+                UnderLineTextField(text: $viewModel.text2, wholeText: $viewModel.wholeText2, showTruncation: $viewModel.showTruncation2, isFoused: viewModel.text2IsFocused, maxChars: maxChars, placeholder: "Last name", returnKeyType: .next, id: .two, didTapReturn: viewModel.didTapReturn(_:), wasTapped: viewModel.textFieldWasTapped(_:))
                     
-                UnderLineTextField(text: $viewModel.text3, wholeText: $viewModel.wholeText3, isFoused: viewModel.text3IsFocused, maxChars: maxChars, placeholder: "Favorite food", returnKeyType: .next, id: .three, didTapReturn: viewModel.didTapReturn(_:), wasTapped: viewModel.textFieldWasTapped(_:))
+                UnderLineTextField(text: $viewModel.text3, wholeText: $viewModel.wholeText3, showTruncation: $viewModel.showTruncation3, isFoused: viewModel.text3IsFocused, maxChars: maxChars, placeholder: "Favorite food", returnKeyType: .next, id: .three, didTapReturn: viewModel.didTapReturn(_:), wasTapped: viewModel.textFieldWasTapped(_:))
                     
-                UnderLineTextField(text: $viewModel.text4, wholeText: $viewModel.wholeText4, isFoused: viewModel.text4IsFocused, maxChars: maxChars, placeholder: "Favorite animal", returnKeyType: .done, id: .four, didTapReturn: viewModel.didTapReturn(_:), wasTapped: viewModel.textFieldWasTapped(_:))
+                UnderLineTextField(text: $viewModel.text4, wholeText: $viewModel.wholeText4, showTruncation: $viewModel.showTruncation4, isFoused: viewModel.text4IsFocused, maxChars: maxChars, placeholder: "Favorite animal", returnKeyType: .done, id: .four, didTapReturn: viewModel.didTapReturn(_:), wasTapped: viewModel.textFieldWasTapped(_:))
                 
                 Button(action: {viewModel.showAlert = true}, label: {
                     Text("showText")

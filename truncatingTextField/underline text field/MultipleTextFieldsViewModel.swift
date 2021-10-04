@@ -22,6 +22,11 @@ class MultipleTextFieldsViewModel: ObservableObject {
     @Published var wholeText3 = ""
     @Published var wholeText4 = ""
     
+    @Published var showTruncation1 = false
+    @Published var showTruncation2 = false
+    @Published var showTruncation3 = false
+    @Published var showTruncation4 = false
+    
     @Published var text1IsFocused = false
     @Published var text2IsFocused = false
     @Published var text3IsFocused = false
